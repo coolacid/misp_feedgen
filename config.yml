@@ -16,9 +16,6 @@ feeds:
     # The name of the feed
     - name: published
 
-    # The output directory relitive to the global output_dir
-      output_dir: /published
-
     # The number of entries to output
       entries: 10
 
@@ -49,6 +46,19 @@ feeds:
         - 3
         - 4
         - 5
+
+      outputs:
+        # Defines all the outputs you're like to send this feed to
+        # Type is the output format to use
+        # Each feed type will have their own configuration requirements
+        - type: misp
+          # The output directory relitive to the global output_dir
+          output_dir: published
+
+        # You can even use the same feed multiple times
+        - type: misp
+          # The output directory relitive to the global output_dir
+          output_dir: published2
 
     # Another example feed, that would generate a feed for all published events created by CIRCL,
     # tagged tlp:white and/or feed-export but exclude anything tagged privint

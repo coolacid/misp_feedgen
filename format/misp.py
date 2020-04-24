@@ -6,13 +6,12 @@ import json
 import logging
 
 class format_misp:
-    def __init__(self, config, feed_config):
-#        self.output_dir =  os.path.join(config['output_dir'], feed_config['output_dir'])
-        self.output_dir =  config['output_dir'] + feed_config['output_dir']
-        self.feed_config = feed_config
+    def __init__(self, config, output_config):
+        self.output_dir =  os.path.join(config['output_dir'], output_config['output_dir'])
+        self.output_config = output_config
 
     def generate(self, events, feed_name):
-        logging.info("Exporting feed {} using MISP format".format(feed_name))
+        logging.info("Exporting feed {} using MISP format to {}".format(feed_name, self.output_dir))
         manifest = {}
         hashes = []
         for event in events:
