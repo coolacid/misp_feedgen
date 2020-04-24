@@ -60,7 +60,7 @@ feeds:
           # The output directory relitive to the global output_dir
           output_dir: published2
 
-        # You can even use the same feed multiple times
+        # Silly output to screen
         - type: screen
 
     # Another example feed, that would generate a feed for all published events created by CIRCL,
