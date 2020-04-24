@@ -60,6 +60,9 @@ feeds:
           # The output directory relitive to the global output_dir
           output_dir: published2
 
+        # You can even use the same feed multiple times
+        - type: screen
+
     # Another example feed, that would generate a feed for all published events created by CIRCL,
     # tagged tlp:white and/or feed-export but exclude anything tagged privint
     - name: CIRCL
