@@ -79,3 +79,7 @@ feeds:
         - 3
         - 4
         - 5
+      outputs:
+        - type: misp
+          output_dir: circl
+        - type: screen

@@ -47,8 +47,6 @@ class misp_feed:
             self.generate(feed)
 
     def generate(self, feed):
-        feed_config = feed
-        format = "misp"
         logging.info("Processing feed {}".format(feed['name']))
         valid_attribute_distributions = [int(v) for v in feed['valid_attribute_distribution_levels']]
         events = self.processFeed(feed['entries'], feed['filters'], valid_attribute_distributions)
