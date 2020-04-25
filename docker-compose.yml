@@ -1,0 +1,10 @@
+version: '3'
+services:
+  # This is capible to relay via gmail, Amazon SES, or generic relays
+  # See: https://hub.docker.com/r/namshi/smtp
+  misp-feedgen:
+    image: coolacid/misp-feedgen:latest
+    build: .
+    volumes:
+      - "./config.yml:/srv/misp-feedgen/config.yml:ro"
+    entrypoint: ./generate.py config.yml -a
