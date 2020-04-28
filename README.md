@@ -14,7 +14,7 @@ optional arguments:
 -h, --help show this help message and exit  
 --debug Debug output  
 -a, --all Process all feeds  
--f FEEDS, --feeds FEEDS  Comma list of case sensitve feeds  
+-f FEEDS, --feeds FEEDS  Comma list of case sensitive feeds  
 ```
 
 ## Existing Modules
