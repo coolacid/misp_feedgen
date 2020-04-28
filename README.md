@@ -26,3 +26,6 @@ optional arguments:
 ### Modifiers
 * [Anonymize](https://github.com/coolacid/misp_feedgen/wiki/%5BModifier%5D-Anonymize)
 
+## Docker Image
+
+A docker image is provided for use. The docker image includes cron, and rsync should you want to use them.
