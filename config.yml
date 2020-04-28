@@ -20,7 +20,7 @@ feeds:
       entries: 10
 
     # The filters to be used for by the feed. You can use any filter that
-    # you can use on the event index, such as organisation, tags, etc.
+    # you can use on the event index, such as organization, tags, etc.
     # It uses the same joining and condition rules as the API parameters
     # This example generates all published events
       filters:
@@ -33,7 +33,7 @@ feeds:
     # are not exportable to all or inherit the event
     #
     # The levels are as follows:
-    # 0: Your Organisation Only
+    # 0: Your Organization Only
     # 1: This Community Only
     # 2: Connected Communities
     # 3: All
@@ -47,7 +47,7 @@ feeds:
         - 4
         - 5
 
-        # Apply any modifers to the feed
+        # Apply any modifiers to the feed
       modifiers:
         # The specific modifier to apply, anonymize in this case
         # Each modifier will have their own configuration options
@@ -62,12 +62,12 @@ feeds:
         # Type is the output format to use
         # Each feed type will have their own configuration requirements
         - type: misp
-          # The output directory relitive to the global output_dir
+          # The output directory relative to the global output_dir
           output_dir: published
 
         # You can even use the same feed multiple times
         - type: misp
-          # The output directory relitive to the global output_dir
+          # The output directory relative to the global output_dir
           output_dir: published2
 
         # Silly output to screen
