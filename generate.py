@@ -92,7 +92,7 @@ if __name__ == '__main__':
     # Allow either all, or a list of feeds
     group = parser.add_mutually_exclusive_group()
     group.add_argument("-a", "--all", help="Process all feeds", action="store_true")
-    group.add_argument("-f", "--feeds", help="Comma list of case sensitve feeds")
+    group.add_argument("-f", "--feeds", help="Comma list of case sensitive feeds")
 
     args = parser.parse_args()
     if args.debug:
