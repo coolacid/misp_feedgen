@@ -47,6 +47,16 @@ feeds:
         - 4
         - 5
 
+        # Apply any modifers to the feed
+      modifiers:
+        # The specific modifier to apply, anonymize in this case
+        # Each modifier will have their own configuration options
+        - type: anonymize
+          # The UUID to set the event org to
+          uuid: 0d9264a8-67dd-41fc-a607-cabe96e0bcaf
+          # The Name of the anonymized org
+          name: Anon
+
       outputs:
         # Defines all the outputs you're like to send this feed to
         # Type is the output format to use
@@ -79,7 +89,14 @@ feeds:
         - 3
         - 4
         - 5
+
+      modifiers:
+        - type: anonymize
+          uuid: 0d9264a8-67dd-41fc-a607-cabe96e0bcaf
+          name: Anon
+
       outputs:
         - type: misp
           output_dir: circl
         - type: screen
+

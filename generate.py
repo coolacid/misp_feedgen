@@ -51,6 +51,11 @@ class misp_feed:
         valid_attribute_distributions = [int(v) for v in feed['valid_attribute_distribution_levels']]
         events = self.processFeed(feed['entries'], feed['filters'], valid_attribute_distributions)
         if len(events) > 0:
+            if "modifiers" in feed:
+                for modifier in feed['modifiers']:
+                    local_class = importlib.import_module("modifier.{}".format(modifier['type']))
+                    modifier = getattr(local_class, "modifier_{}".format(modifier['type']))(self.config, modifier)
+                    modifier.modify(events, feed['name'])
             for output in feed['outputs']:
                 local_class = importlib.import_module("format.{}".format(output['type']))
                 formater = getattr(local_class, "format_{}".format(output['type']))(self.config, output)
