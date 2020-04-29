@@ -9,6 +9,10 @@ import dotted
 
 class format_screen(baseclass):
     def __init__(self, config, output_config):
+        if 'unroll' in output_config:
+            self.to_unroll = output_config['unroll']
+        else:
+            self.to_unroll = None
         if 'fields' in output_config:
             self.fields = output_config['fields']
         else:
@@ -23,5 +27,11 @@ class format_screen(baseclass):
         logging.info("Exporting feed {} using screen".format(feed_name))
         for event in events:
             e_feed = event.to_feed(with_meta=True)
-            data.extend(self.unroll([ dotted.get(e_feed, x) for x in self.fields]))
+            temp_data = []
+            for field in self.fields:
+                temp = dotted.get(e_feed, field)
+                if (isinstance(temp, list) or isinstance(temp, tuple)) and not field in self.to_unroll:
+                    temp = ', '.join(temp)
+                temp_data.append(temp)
+            data.extend(self.unroll(temp_data))
         print(columnar(data, self.headers, no_borders=True))
