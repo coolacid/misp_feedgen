@@ -2,10 +2,12 @@
 # -*- coding: utf-8 -*-
 
 import logging
-from dotty_dict import dotty
-from columnar import columnar
+from lib.base import baseclass
 
-class format_screen:
+from columnar import columnar
+import dotted
+
+class format_screen(baseclass):
     def __init__(self, config, output_config):
         if 'fields' in output_config:
             self.fields = output_config['fields']
@@ -20,6 +22,6 @@ class format_screen:
         data = []
         logging.info("Exporting feed {} using screen".format(feed_name))
         for event in events:
-            e_feed = dotty(event.to_feed(with_meta=True))
-            data.append([ e_feed[x] for x in self.fields])
+            e_feed = event.to_feed(with_meta=True)
+            data.extend(self.unroll([ dotted.get(e_feed, x) for x in self.fields]))
         print(columnar(data, self.headers, no_borders=True))
