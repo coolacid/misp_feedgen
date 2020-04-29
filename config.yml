@@ -70,8 +70,19 @@ feeds:
           # The output directory relative to the global output_dir
           output_dir: published2
 
-        # Silly output to screen
+        # Silly output to screen using default fields
         - type: screen
+
+        # Silly output to screen with custom fields and headers
+        - type: screen
+          fields:
+                - Event.date
+                - Event.info
+                - Event.Orgc.name
+          headers:
+                - Date
+                - Info
+                - Org Name
 
     # Another example feed, that would generate a feed for all published events created by CIRCL,
     # tagged tlp:white and/or feed-export but exclude anything tagged privint
