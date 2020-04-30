@@ -84,6 +84,30 @@ feeds:
                 - Info
                 - Org Name
 
+        # Output to CSV file
+        - type: csv
+          # The file to write to, from the base directory defined above
+          filename: output.csv
+
+          # Which Fields you want, pattern matching from https://pypi.org/project/dotted-notation/
+          fields:
+                - Event.date
+                - Event.Attribute[*].value
+                - Event.info
+                - Event.Tag[*].name
+
+          # Which defined fields do you want to unroll as individual rows
+          # Otherwise, will output as Comma Seperated Quoted Text
+          unroll:
+                - Event.Attribute[*].value
+
+          # The top level headers for Row 1
+          headers:
+                - Date
+                - IoC
+                - Info
+                - Tag
+
     # Another example feed, that would generate a feed for all published events created by CIRCL,
     # tagged tlp:white and/or feed-export but exclude anything tagged privint
     - name: CIRCL
