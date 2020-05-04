@@ -10,6 +10,7 @@ WORKDIR /srv/misp-feedgen
 COPY requirements.txt .
 RUN pip3 install -r requirements.txt
 
-COPY generate.py /srv/misp-feedgen/
-COPY format /srv/misp-feedgen/
-
+ADD generate.py /srv/misp-feedgen/
+ADD format /srv/misp-feedgen/format
+ADD modifier /srv/misp-feedgen/modifier
+ADD lib /srv/misp-feedgen/lib
