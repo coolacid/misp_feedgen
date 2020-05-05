@@ -3,6 +3,7 @@ FROM python:3.7-slim-buster
 RUN apt-get update && apt-get install -y --no-install-recommends \
             cron \
             rsync \
+            ssh-client \
          && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /srv/misp-feedgen
