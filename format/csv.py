@@ -15,7 +15,7 @@ class format_csv(baseclass):
         if 'unroll' in output_config:
             self.to_unroll = output_config['unroll']
         else:
-            self.to_unroll = None
+            self.to_unroll = []
         if 'fields' in output_config:
             self.fields = output_config['fields']
         else:
