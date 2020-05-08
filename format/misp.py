@@ -24,8 +24,19 @@ class format_misp:
 
     def saveEvent(self, event):
         try:
-            with open(os.path.join(self.output_dir, f'{event["Event"]["uuid"]}.json'), 'w') as f:
-                json.dump(event, f, indent=2)
+            if os.path.isfile(os.path.join(self.output_dir, f'{event["Event"]["uuid"]}.json')):
+                with open(os.path.join(self.output_dir, f'{event["Event"]["uuid"]}.json'), 'r') as f:
+                    try:
+                        original = json.load(f)
+                    except:
+                        original = ""
+            else:
+                original = ""
+            if original != event:
+                with open(os.path.join(self.output_dir, f'{event["Event"]["uuid"]}.json'), 'w') as f:
+                    json.dump(event, f, indent=2)
+            else:
+                logging.debug('Event unchanged')
         except Exception as e:
             logging.error('Could not create the event dump.', exc_info=True)
 
@@ -39,7 +50,18 @@ class format_misp:
 
     def saveManifest(self, manifest):
         try:
-            with open(os.path.join(self.output_dir, 'manifest.json'), 'w') as manifestFile:
-                json.dump(manifest, manifestFile)
+            if os.path.isfile(os.path.join(self.output_dir, 'manifest.json')):
+                with open(os.path.join(self.output_dir, 'manifest.json'), 'r') as manifestFile:
+                    try:
+                        original = json.load(manifestFile)
+                    except:
+                        original = ""
+            else:
+                original = ""
+            if original != manifest:
+                with open(os.path.join(self.output_dir, 'manifest.json'), 'w') as manifestFile:
+                    json.dump(manifest, manifestFile)
+            else:
+                logging.debug('Manifest unchanged')
         except Exception as e:
             logging.error('Could not create the manifest file.', exc_info=True)
