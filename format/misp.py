@@ -4,6 +4,7 @@
 import os
 import json
 import logging
+import csv
 
 class format_misp:
     def __init__(self, config, output_config):
@@ -42,9 +43,21 @@ class format_misp:
 
     def saveHashes(self, hashes):
         try:
-            with open(os.path.join(self.output_dir, 'hashes.csv'), 'w') as hashFile:
-                for element in hashes:
-                    hashFile.write('{},{}\n'.format(element[0], element[1]))
+            if os.path.isfile(os.path.join(self.output_dir, 'hashes.csv')):
+                with open(os.path.join(self.output_dir, 'hashes.csv'), 'r') as hashFile:
+                    try:
+                        original = set(map(tuple,csv.reader(hashFile)))
+                    except:
+                        original = ""
+            else:
+                original = ""
+            if original != set(map(tuple,hashes)):
+                with open(os.path.join(self.output_dir, 'hashes.csv'), 'w') as hashFile:
+                    output = csv.writer(hashFile, lineterminator='\n')
+                    for element in hashes:
+                        output.writerow(element)
+            else:
+                logging.debug('Hashes unchanged')
         except Exception as e:
             logging.error('Could not create the quick hash lookup file.', exc_info=True)
 

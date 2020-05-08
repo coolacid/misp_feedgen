@@ -27,7 +27,7 @@ class format_csv(baseclass):
 
     def generate(self, events, feed_name):
         data = []
-        logging.info("Exporting feed {} using screen".format(feed_name))
+        logging.info("Exporting feed {} using CSV".format(feed_name))
         for event in events:
             e_feed = event.to_feed(with_meta=True)
             temp_data = []
@@ -37,8 +37,23 @@ class format_csv(baseclass):
                     temp = ', '.join(temp)
                 temp_data.append(temp)
             data.extend(self.unroll(temp_data))
-        with open(self.filename, 'w', newline='') as outputfile:
-            csvfile = csv.writer(outputfile)
-            csvfile.writerow(self.headers)
-            for row in data:
-                csvfile.writerow(row)
+
+        if os.path.isfile(self.filename):
+            with open(self.filename, 'r') as file:
+                try:
+                    csvread = csv.reader(file)
+                    next(csvread, None)
+                    original = set(map(tuple,csvread))
+                except:
+                    original = ""
+        else:
+            original = ""
+
+        if original != set(map(tuple, data)):
+            with open(self.filename, 'w', newline='') as outputfile:
+                csvfile = csv.writer(outputfile)
+                csvfile.writerow(self.headers)
+                for row in data:
+                    csvfile.writerow(row)
+        else:
+            logging.debug("CSV file unchanged")
