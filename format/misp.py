@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+from lib.base import baseclass
+
 import os
 import json
 import logging
 import csv
 
-class format_misp:
+class format_misp(baseclass):
     def __init__(self, config, output_config):
         self.output_dir =  os.path.join(config['output_dir'], output_config['output_dir'])
         self.output_config = output_config
@@ -15,13 +17,20 @@ class format_misp:
         logging.info("Exporting feed {} using MISP format to {}".format(feed_name, self.output_dir))
         manifest = {}
         hashes = []
+        filelist = []
         for event in events:
             e_feed = event.to_feed(with_meta=True)
             hashes += [[h, event.uuid] for h in e_feed['Event'].pop('_hashes')]
             manifest.update(e_feed['Event'].pop('_manifest'))
             self.saveEvent(e_feed)
+            filelist.append(f'{event["uuid"]}.json')
         self.saveManifest(manifest)
         self.saveHashes(hashes)
+        filelist.append('manifest.json')
+        json_files = [pos_json for pos_json in os.listdir(self.output_dir) if pos_json.endswith('.json')]
+        for todelete in list(set(json_files) - set(filelist)):
+            logging.info("Removing old file: {}".format(todelete))
+            os.remove(os.path.join(self.output_dir, todelete))
 
     def saveEvent(self, event):
         try:
