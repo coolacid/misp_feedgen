@@ -30,6 +30,11 @@ optional arguments:
 ### Post-Hooks
 * [Shell](https://github.com/coolacid/misp_feedgen/wiki/%5BHook%5D-Shell)
 
+### Dotty Notation
+Some paramaters (where documented) use dotty notation. This makes deeply nested fields accesable in as a text variable.
+
+You can find out more in the [dotty notation](https://github.com/coolacid/misp_feedgen/wiki/Dotty-Notation) wiki page.
+
 ## Docker Image
 
 A [docker image](https://hub.docker.com/r/coolacid/misp_feedgen) is provided for use.
