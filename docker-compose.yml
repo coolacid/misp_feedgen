@@ -5,5 +5,12 @@ services:
     image: coolacid/misp-feedgen:latest
     build: .
     volumes:
+      # Volume mount the config.yml file
       - "./config.yml:/srv/misp-feedgen/config.yml:ro"
+      # Volume mount a simple cron.d file which runs all feeds every 15 minutes
+      - "./example/feedgen.cron:/etc/cron.d/feedgen"
+      # Volume mount the output directory
+      - "./output:/srv/misp-feedgen/output"
+      # You can also volume mount SSH private keys for rsync usage
     entrypoint: ./generate.py config.yml -a
+#    entrypoint: /entrypoint_cron.sh

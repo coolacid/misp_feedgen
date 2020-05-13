@@ -21,11 +21,25 @@ optional arguments:
 
 ### Output Formats
 * [MISP Format](https://github.com/coolacid/misp_feedgen/wiki/%5BFormats%5D-MISP)
+* [CSV](https://github.com/coolacid/misp_feedgen/wiki/%5BFormats%5D-CSV)
 * [Screen](https://github.com/coolacid/misp_feedgen/wiki/%5BFormats%5D-Screen)
 
 ### Modifiers
 * [Anonymize](https://github.com/coolacid/misp_feedgen/wiki/%5BModifier%5D-Anonymize)
 
+### Post-Hooks
+* [Shell](https://github.com/coolacid/misp_feedgen/wiki/%5BHook%5D-Shell)
+
 ## Docker Image
 
-A docker image is provided for use. The docker image includes cron, and rsync should you want to use them.
+A [docker image](https://hub.docker.com/r/coolacid/misp_feedgen) is provided for use.
+
+The docker image includes 
+* cron
+* ssh
+* rsync
+* /entrypoint_cron.sh which launches crond
+
+You can load cron.d tab files by volumemounting them into /etc/cron.d/feedgen
+
+See the example docker-compoase.yml file

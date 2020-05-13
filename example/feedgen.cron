@@ -1,0 +1,1 @@
+*/15 * * * * root /usr/local/bin/python3 /srv/misp-feedgen/generate.py /srv/misp-feedgen/config.yml -a >/tmp/cronlog 2>/tmp/cronlog
