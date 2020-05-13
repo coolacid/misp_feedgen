@@ -61,6 +61,11 @@ class misp_feed:
                 formater = getattr(local_class, "format_{}".format(output['type']))(self.config, output)
                 formater.generate(events, feed['name'])
             logging.info("Exported {} events from feed: {}.".format(len(events), feed['name'])) 
+            if "hooks" in feed:
+                for hook in feed['hooks']:
+                    local_class = importlib.import_module("post-run.{}".format(hook['type']))
+                    modifier = getattr(local_class, "postrun_{}".format(hook['type']))(self.config, hook, feed['name'])
+                    modifier.hook()
 
     def processFeed(self, entries, filters, valid_attribute_distributions):
         events = []

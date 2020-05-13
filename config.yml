@@ -108,6 +108,13 @@ feeds:
                 - Info
                 - Tag
 
+      # Any hooks to run at the end of feed generation
+      hooks:
+          # The Hook type, in this case, a shell
+        - type: shell
+          # The command to run in shell, a real example of this could be rsync
+          command: ls
+
     # Another example feed, that would generate a feed for all published events created by CIRCL,
     # tagged tlp:white and/or feed-export but exclude anything tagged privint
     - name: CIRCL
