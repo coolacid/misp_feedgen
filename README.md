@@ -1,6 +1,7 @@
 # MISP Feed Generator
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2cabe5b6408d42d28d150e9da29a1644)](https://app.codacy.com/manual/coolacid/misp_feedgen?utm_source=github.com&utm_medium=referral&utm_content=coolacid/misp_feedgen&utm_campaign=Badge_Grade_Dashboard)
+[![CodeFactor](https://www.codefactor.io/repository/github/coolacid/misp_feedgen/badge)](https://www.codefactor.io/repository/github/coolacid/misp_feedgen)
 
 This project aims to be a MISP multi-tool for generating feeds from MISP
 
