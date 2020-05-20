@@ -30,7 +30,7 @@ class format_screen(baseclass):
             temp_data = []
             for field in self.fields:
                 temp = dotted.get(e_feed, field)
-                if (isinstance(temp, list) or isinstance(temp, tuple)) and not field in self.to_unroll:
+                if (isinstance(temp, (list, tuple)) and not field in self.to_unroll:
                     temp = ', '.join(temp)
                 temp_data.append(temp)
             data.extend(self.unroll(temp_data))
