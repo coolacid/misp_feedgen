@@ -14,10 +14,9 @@ class postrun_shell(baseclass):
     def hook(self):
         shell = False
         if isinstance(self.hook_config['command'], str):
-            command = self.hook_config['command'].split()
             shell = True
-        elif isinstace(self.hook_config['command'], list):
-            command = self.hook_config['command']
+        elif isinstance(self.hook_config['command'], list):
+            shell = False
         else:
             logging.error("Command must be a string, or list, see subprocess.run")
             return

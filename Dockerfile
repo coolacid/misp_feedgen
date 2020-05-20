@@ -11,10 +11,10 @@ WORKDIR /srv/misp-feedgen
 COPY requirements.txt .
 RUN pip3 install -r requirements.txt
 
-ADD format /srv/misp-feedgen/format
-ADD modifier /srv/misp-feedgen/modifier
-ADD post-run /srv/misp-feedgen/post-run
-ADD lib /srv/misp-feedgen/lib
-ADD generate.py /srv/misp-feedgen/
-ADD entrypoint_cron.sh /
+COPY format /srv/misp-feedgen/format
+COPY modifier /srv/misp-feedgen/modifier
+COPY post-run /srv/misp-feedgen/post-run
+COPY lib /srv/misp-feedgen/lib
+COPY generate.py /srv/misp-feedgen/
+COPY entrypoint_cron.sh /
 

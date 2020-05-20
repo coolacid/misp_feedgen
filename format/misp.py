@@ -47,7 +47,7 @@ class format_misp(baseclass):
                     json.dump(event, f, indent=2)
             else:
                 logging.debug('Event unchanged')
-        except Exception as e:
+        except Exception:
             logging.error('Could not create the event dump.', exc_info=True)
 
     def saveHashes(self, hashes):

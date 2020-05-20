@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import logging
 import itertools
 
 class baseclass:
     def __init__(self, config, output_config):
         pass
 
-    def compare(self, list1, list2):
+    def map_compare(self, list1, list2):
         list1 = set(map(tuple,list1))
         list2 = set(map(tuple,list2))
         return list1 == list2

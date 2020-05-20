@@ -15,7 +15,7 @@ class misp_feed:
             import urllib3
             urllib3.disable_warnings()
 #            logging.warning('InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings')
-        try: 
+        try:
             self.misp = pymisp.ExpandedPyMISP(self.config['url'], self.config['key'], self.config['verify_ssl'])
 #        except TimeoutError:
 #            logging.error("Timeout error connecting to MISP instance")
@@ -60,7 +60,7 @@ class misp_feed:
                 local_class = importlib.import_module("format.{}".format(output['type']))
                 formater = getattr(local_class, "format_{}".format(output['type']))(self.config, output)
                 formater.generate(events, feed['name'])
-            logging.info("Exported {} events from feed: {}.".format(len(events), feed['name'])) 
+            logging.info("Exported {} events from feed: {}.".format(len(events), feed['name']))
             if "hooks" in feed:
                 for hook in feed['hooks']:
                     local_class = importlib.import_module("post-run.{}".format(hook['type']))
@@ -71,7 +71,7 @@ class misp_feed:
         events = []
         try:
             misp_events = self.misp.search(metadata=True, limit=entries, **filters, pythonify=True)
-        except Exception as e:
+        except Exception:
             logging.error("Invalid response received from MISP.", exc_info=True)
             return []
         if len(misp_events) == 0:
