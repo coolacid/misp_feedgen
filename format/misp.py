@@ -67,7 +67,7 @@ class format_misp(baseclass):
                         output.writerow(element)
             else:
                 logging.debug('Hashes unchanged')
-        except Exception as e:
+        except Exception:
             logging.error('Could not create the quick hash lookup file.', exc_info=True)
 
     def saveManifest(self, manifest):
@@ -85,5 +85,5 @@ class format_misp(baseclass):
                     json.dump(manifest, manifestFile)
             else:
                 logging.debug('Manifest unchanged')
-        except Exception as e:
+        except Exception:
             logging.error('Could not create the manifest file.', exc_info=True)

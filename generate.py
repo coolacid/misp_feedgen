@@ -81,7 +81,7 @@ class misp_feed:
             try:
                 e = self.misp.get_event(event.uuid, pythonify=True)
                 e_feed = e.to_feed(valid_distributions=valid_attribute_distributions)
-            except Exception as e:
+            except Exception:
                 logging.error(event.uuid, exc_info=True)
                 continue
             # We use the to_feed to filter out events without valid distributions
