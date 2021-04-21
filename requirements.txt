@@ -1,3 +1,4 @@
 pymisp
 pyyaml
 dotted-notation
+columnar
