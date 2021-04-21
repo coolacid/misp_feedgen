@@ -69,6 +69,8 @@ class misp_feed:
 
     def processFeed(self, entries, filters, valid_attribute_distributions):
         events = []
+        if "order" not in filters:
+            filters['order'] = "Event.timestamp desc"
         try:
             misp_events = self.misp.search(metadata=True, limit=entries, **filters, pythonify=True)
         except Exception:
