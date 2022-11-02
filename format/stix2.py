@@ -22,6 +22,8 @@ class format_stix2(baseclass):
 
     def generate(self, events, feed_name):
         manifest = {}
+        filelist = []
+        logging.info("Exporting feed {} using STIX format to {}".format(feed_name, self.directory))
         for event in events:
             e_feed = event.to_feed(with_meta=True)
             self.parser.parse_misp_event(event)
@@ -31,8 +33,15 @@ class format_stix2(baseclass):
             manifest[self.parser.bundle['id']]['hash'] = hashlib.sha256(data.encode()).hexdigest()
 
             filename = os.path.join(self.directory, self.parser.bundle['id'] + '.json')
+            filelist.append(self.parser.bundle['id'] + '.json')
             with open(filename, 'w', newline='') as outputfile:
                 outputfile.write(data)
             filename = os.path.join(self.directory, 'manifest.json')
             with open(filename, 'w', newline='') as outputfile:
                 outputfile.write(json.dumps(manifest))
+
+        filelist.append('manifest.json')
+        json_files = [pos_json for pos_json in os.listdir(self.directory) if pos_json.endswith('.json')]
+        for todelete in list(set(json_files) - set(filelist)):
+            logging.info("Removing old file: {}".format(todelete))
+            os.remove(os.path.join(self.directory, todelete))
