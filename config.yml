@@ -70,6 +70,17 @@ feeds:
           # The output directory relative to the global output_dir
           output_dir: published2
 
+        # Output to the STIX 2.1 (Default) format
+        - type: stix2
+          # The output directory relitive to the global output_dir
+          output_dir: stix/2.1
+
+        # Output to the STIX 2.0 format
+        - type: stix2
+          # The output directory relitive to the global output_dir
+          format: 20
+          output_dir: stix/2.0
+
         # Silly output to screen using default fields
         - type: screen
 

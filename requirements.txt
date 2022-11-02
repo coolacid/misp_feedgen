@@ -2,3 +2,4 @@ pymisp
 pyyaml
 dotted-notation
 columnar
+misp-stix
